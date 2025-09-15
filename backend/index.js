@@ -10,8 +10,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/health", (req, res) => res.json({ status: "ok" }));
+// Health route
+app.get("/api/health", (req, res) => res.status(200).json({ status: "ok" }));
 
+// Other routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notes", require("./routes/notes"));
 app.use("/api/tenants", require("./routes/tenants"));
