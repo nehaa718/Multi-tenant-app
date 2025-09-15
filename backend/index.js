@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const serverless = require("serverless-http");
 
 dotenv.config();
 connectDB();
@@ -18,5 +19,5 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notes", require("./routes/notes"));
 app.use("/api/tenants", require("./routes/tenants"));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Export as serverless function
+module.exports.handler = serverless(app);
